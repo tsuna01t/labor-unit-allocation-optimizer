@@ -1,0 +1,459 @@
+/**
+ * 區塊標題 `.wiki-section__head` 之背景圖出自存檔頁內嵌規則
+ * `.obc-tmpl-fold__title.h1`（三層 url：左／右裝飾圖 + 中央橫向 repeat-x）。
+ */
+
+:root {
+    --wiki-primary: #00c3ff;
+    --wiki-primary-deep: #00b2eb;
+    --wiki-bg-page: #f0f2f5;
+    --wiki-bg-breadcrumb: #f4f6f8;
+    --wiki-banner-soft: #d9f5ff;
+    --wiki-text: #333333;
+    --wiki-text-muted: #666666;
+    --wiki-border: #e8e8e8;
+    --wiki-table-label: #eef5fa;
+    --wiki-radius: 4px;
+    --wiki-radius-lg: 8px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", Helvetica, Arial,
+        Inter, "PingFang TC", "PingFang SC", "Microsoft JhengHei",
+        "Microsoft YaHei", sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--wiki-text);
+    -webkit-font-smoothing: antialiased;
+    background: var(--wiki-bg-page);
+}
+
+/* —— 麵包屑 —— */
+.wiki-breadcrumb {
+    background: var(--wiki-bg-breadcrumb);
+    border-bottom: 1px solid var(--wiki-border);
+    font-size: 13px;
+    color: var(--wiki-text-muted);
+}
+
+.wiki-breadcrumb__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8px 20px;
+}
+
+.wiki-breadcrumb__sep {
+    margin: 0 8px;
+    opacity: 0.65;
+}
+
+.wiki-breadcrumb__current {
+    color: var(--wiki-text);
+}
+
+.page-shell {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 18px 40px;
+}
+
+.wiki-meta-strip {
+    background: var(--wiki-banner-soft);
+    border: 1px solid rgba(0, 195, 255, 0.22);
+    border-radius: var(--wiki-radius);
+    padding: 10px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--wiki-primary);
+    text-align: center;
+    box-shadow: none;
+}
+
+.wiki-main {
+    background: #fff;
+    border-radius: var(--wiki-radius-lg);
+    border: 1px solid var(--wiki-border);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    padding: 8px 0 32px;
+    overflow: hidden;
+}
+
+.wiki-page-title {
+    margin: 20px 28px 8px;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 0.03em;
+    color: var(--wiki-text);
+}
+
+.wiki-tabpanel {
+    padding: 8px 24px 0;
+}
+
+.wiki-result-block > .wiki-section__head {
+    margin-bottom: 0;
+}
+
+.wiki-section {
+    margin-top: 20px;
+}
+
+.wiki-section:first-of-type {
+    margin-top: 12px;
+}
+
+/* —— 區塊標題（與百科 obc-tmpl-fold__title.h1 相同之三層 background:url） —— */
+.wiki-section__head {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+    color: #007daf;
+    text-align: center;
+    overflow: visible;
+    background: url(data:image/png;base64,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) left center / contain no-repeat,url(data:image/png;base64,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) right center / contain no-repeat,url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABYCAYAAABxlTA0AAAAAXNSR0IArs4c6QAAAURJREFUeF7t3bENhEAQBMHbYBGB4pMAYRAACHJorz6ANkqje7yddTzP8ssEBnBm+4fnvC24JAZc6lpwrPsBb5cnomSeHXDp608u1fUG17w+03Jhn2kxMWDAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCct2DAsUCcd8uoBnbLqBX2Bre+jkXFvoBzYEdTW2JXaVvf9QK0LkQYT789QwAAAABJRU5ErkJggg==) center / contain repeat-x;font-size:17px;min-height:44px;line-height:30px;font-weight:normal;padding:7px 18px
+}
+
+.wiki-section__head-text {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+}
+
+/* —— 資訊表格（標籤淺藍底） —— */
+.wiki-infobox {
+    border: 1px solid var(--wiki-primary);
+    border-top: none;
+    background: #fff;
+}
+
+.wiki-kv-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.wiki-kv-table th,
+.wiki-kv-table td {
+    border: 1px solid var(--wiki-border);
+    padding: 12px 14px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.wiki-kv-table th {
+    width: 28%;
+    background: var(--wiki-table-label);
+    color: var(--wiki-text);
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.wiki-kv-table td {
+    background: #fff;
+}
+
+.wiki-kv-table label {
+    margin: 0;
+    font-size: inherit;
+    color: inherit;
+}
+
+.wiki-kv-table input[type="number"] {
+    max-width: 220px;
+}
+
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 0;
+    padding: 16px;
+    border: 1px solid var(--wiki-primary);
+    border-top: none;
+    background: #fafcfd;
+}
+
+.res-card {
+    position: relative;
+    padding: 14px;
+    background: #fff;
+    border: 1px solid var(--wiki-border);
+    border-radius: var(--wiki-radius);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.res-card h3 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--wiki-text);
+    padding: 8px 10px;
+    background: var(--wiki-table-label);
+    border-radius: 4px;
+    border-left: 4px solid var(--wiki-primary);
+}
+
+/* 資源名稱前之小圖示（資源卡片／結果表） */
+.res-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.res-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.res-label__text {
+    line-height: 1.3;
+}
+
+.input-group {
+    margin-bottom: 10px;
+}
+
+.input-row {
+    display: flex;
+    gap: 8px;
+}
+
+.input-row input {
+    flex: 1;
+    min-width: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 12px;
+    color: var(--wiki-text-muted);
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--wiki-border);
+    border-radius: 4px;
+    font: inherit;
+    color: var(--wiki-text);
+    background: #fff;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: var(--wiki-primary);
+    box-shadow: 0 0 0 2px rgba(0, 195, 255, 0.22);
+}
+
+.wiki-actions {
+    margin-top: 24px;
+    padding: 0 4px;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 14px 20px;
+    border: none;
+    border-radius: var(--wiki-radius);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    background-color: var(--wiki-primary);
+    box-shadow: none;
+    transition:
+        background-color 0.2s ease,
+        filter 0.2s ease,
+        transform 0.1s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(
+            0deg,
+            rgba(255, 255, 255, 0.2),
+            rgba(255, 255, 255, 0.2)
+        ),
+        var(--wiki-primary);
+}
+
+.btn-primary:active {
+    background: linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.12),
+            rgba(0, 0, 0, 0.12)
+        ),
+        var(--wiki-primary);
+}
+
+.btn-primary:focus-visible {
+    outline: 2px solid var(--wiki-primary-deep);
+    outline-offset: 2px;
+}
+
+/* —— 結果區（標題下同使用說明／參數表之青框） —— */
+.wiki-result-body {
+    padding: 18px;
+    border: 1px solid var(--wiki-primary);
+    border-top: none;
+    background: #fff;
+}
+
+.wiki-result-empty {
+    margin: 16px 4px;
+    padding: 20px;
+    text-align: center;
+    color: var(--wiki-text-muted);
+    background: var(--wiki-bg-breadcrumb);
+    border: 1px dashed var(--wiki-primary);
+    border-radius: var(--wiki-radius);
+}
+
+.wiki-result-content {
+    margin-top: 8px;
+}
+
+.wiki-result-summary {
+    margin: 16px 4px 12px;
+    font-size: 14px;
+    color: var(--wiki-text);
+    line-height: 1.65;
+}
+
+.wiki-table-wrap {
+    overflow-x: auto;
+    margin: 0 4px;
+    border: 1px solid var(--wiki-primary);
+    border-radius: var(--wiki-radius);
+}
+
+.wiki-table-wrap table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    background: #fff;
+}
+
+.wiki-table-wrap th,
+.wiki-table-wrap td {
+    padding: 10px 12px;
+    text-align: center;
+    border: 1px solid var(--wiki-border);
+    font-size: 13px;
+}
+
+.wiki-table-wrap thead th {
+    background: var(--wiki-table-label);
+    color: var(--wiki-text);
+    font-weight: 600;
+}
+
+.best-alloc {
+    color: var(--wiki-primary-deep);
+    font-weight: 700;
+    font-size: 1.05em;
+}
+
+.wiki-about-body {
+    padding: 18px;
+    border: 1px solid var(--wiki-primary);
+    border-top: none;
+    background: #fff;
+    font-size: 14px;
+    color: var(--wiki-text);
+    line-height: 1.75;
+}
+
+.wiki-about-body p {
+    margin: 0 0 12px;
+}
+
+.wiki-about-body p:last-child {
+    margin-bottom: 0;
+}
+
+.wiki-about-body code {
+    font-size: 0.92em;
+    padding: 2px 6px;
+    background: var(--wiki-bg-breadcrumb);
+    border-radius: 3px;
+    border: 1px solid var(--wiki-border);
+}
+
+@media (max-width: 900px) {
+    .resource-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wiki-page-title {
+        font-size: 22px;
+        margin-left: 18px;
+        margin-right: 18px;
+    }
+
+    .wiki-tabpanel {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .detail__divider {
+        margin-left: 18px;
+        margin-right: 18px;
+    }
+}
+
+.detail__divider {
+    position: relative;
+    height: 3px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANYAAAAGCAYAAAC/3WABAAAAAXNSR0IArs4c6QAAAZdJREFUWEftVz1Lw1AUvTdpm1JjdGjUUUQRRBehtejP8Ae4Vmdn8Rc4qrub/0OhaenkIoo42sbBftK0SY48MW0pljY8cHpvyzvnXg6Hc5Mbpimn/NnNIwweACQiCmvk5G3rQDzL4lFPx+1cEMJLADxNi7pXDsRxgJlBwFV+1Tof5axZQkj5YZaZfdb0o1w244g7x5XDJ/X9GebHBjYTvfYTCMZICL3k7MVtIVoWj3pWaq1iQHRNpIYqTnAUdx4HGND5pJA17wRbvLjLbusZoK1hpok9P23uHi7xqyw+c7CqgD2oN9+I2Byb7o+cba4zsyeLRz2rX91jvx/cA9DmsUlxlAOxHWAOMimjsLecqvwOl1F22+8A1ka90E6uWBv7zC4AKXxcH4uARxcBUwqefwuQNSSx1k0b+mkAdGTxqGcI3gkHvlj/1FDFTosqiOOA+BhwUjvTmRuiTmde6HnBDSHMjG1jTTYSRR3Ul8WHPUu1JuIIVVzlgHJgtgPs1FvhJE3smz8/gFOOLD5blmIoB/7HAdksT6v/BlZmS2VSgnITAAAAAElFTkSuQmCC), url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAACCAYAAAAqyZ49AAAAAXNSR0IArs4c6QAAACdJREFUKFNjPPny038GPMBMjJeFkZHxL0wJIfX4zCJHjpGQhQPtQABkRhFJzFCXtQAAAABJRU5ErkJggg==), url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAACCAYAAAAqyZ49AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAUGVYSWZNTQAqAAAACAACARIAAwAAAAEAAQAAh2kABAAAAAEAAAAmAAAAAAADoAEAAwAAAAEAAQAAoAIABAAAAAEAAAAooAMABAAAAAEAAAACAAAAAONKfxcAAAFZaVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJYTVAgQ29yZSA2LjAuMCI+CiAgIDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+CiAgICAgIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiCiAgICAgICAgICAgIHhtbG5zOnRpZmY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vdGlmZi8xLjAvIj4KICAgICAgICAgPHRpZmY6T3JpZW50YXRpb24+MTwvdGlmZjpPcmllbnRhdGlvbj4KICAgICAgPC9yZGY6RGVzY3JpcHRpb24+CiAgIDwvcmRmOlJERj4KPC94OnhtcG1ldGE+Chle4QcAAAApSURBVBgZYzz58tN/BjoCc3E+Rph1////Zz716vMfGB8bzYRNcDCJAQDdtgqnn4JncQAAAABJRU5ErkJggg==);
+    background-size: 107px 3px, 20px 1px, 20px 1px;
+    background-position: center bottom, left bottom, right bottom;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    margin: 28px 24px 20px;
+}
+
+.detail__divider::before {
+    left: 0.16rem;
+    right: calc(50% + 0.08rem);
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAACCAYAAAAqyZ49AAAAAXNSR0IArs4c6QAAABRJREFUKFNjPPny03+GQQwYB7sDAc0uB0lza9gvAAAAAElFTkSuQmCC);
+    background-size: 1px 1px;
+    background-position: bottom;
+    background-repeat: repeat-x;
+}
+
+.detail__divider::after {
+    left: calc(50% + 0.08rem);
+    right: 0.16rem;
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAACCAYAAAAqyZ49AAAAAXNSR0IArs4c6QAAABRJREFUKFNjPPny03+GQQwYB7sDAc0uB0lza9gvAAAAAElFTkSuQmCC);
+    background-size: 1px 1px;
+    background-position: bottom;
+    background-repeat: repeat-x;
+}

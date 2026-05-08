@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>勞作單元分配最佳化</title>
+    <meta name="description" content="依目標總收益與商品單價換算產量，並依資源合成需求、基礎產出、單元效率與投入上限，將總勞作單元做貪婪式分配，預估瓶頸路徑與可收取時間。">
+    <meta name="keywords" content="勞作單元,資源分配,同步最佳化,產量計算,崩壞3rd,崩壞3,崩3,數海計劃．論文危機,數海計劃,論文危機">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#00c3ff">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_TW">
+    <meta property="og:site_name" content="勞作單元分配最佳化">
+    <meta property="og:title" content="勞作單元分配最佳化">
+    <meta property="og:description" content="依目標總收益與商品單價換算產量，並依資源合成需求、基礎產出、單元效率與投入上限，將總勞作單元做貪婪式分配，預估瓶頸路徑與可收取時間。">
+    <meta property="og:image" content="img/LBU.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:alt" content="勞作單元分配最佳化">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="勞作單元分配最佳化">
+    <meta name="twitter:description" content="依目標總收益與商品單價換算產量，並依資源資料將總勞作單元做同步分配試算。">
+    <meta name="twitter:image" content="img/LBU.png">
+    <meta name="twitter:image:alt" content="勞作單元分配最佳化">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "勞作單元分配最佳化",
+        "description": "依目標總收益與商品單價換算產量，並依資源合成需求、基礎產出、單元效率與投入上限，將總勞作單元做貪婪式分配，預估瓶頸路徑與可收取時間。",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "需要啟用 JavaScript。",
+        "inLanguage": "zh-Hant"
+    }
+    </script>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="page-shell">
+
+        <main class="wiki-main">
+            <h1 class="wiki-page-title">勞作單元分配最佳化</h1>
+            <div class="detail__divider" aria-hidden="true"></div>
+
+            <div id="panel-about" class="wiki-tabpanel" aria-labelledby="heading-about">
+                <section class="wiki-section">
+                    <h2 id="heading-about" class="wiki-section__head"><span class="wiki-section__head-text">使用說明</span></h2>
+                    <div class="wiki-about-body">
+                        <p>依「目標總收益／商品單價」換算目標產量，再根據各資源合成需求、基礎產出、單元效率與投入上限，將<strong>總勞作單元</strong>做貪婪式分配，使<strong>最慢的資源路徑</strong>盡可能提前。</p>
+                    </div>
+                </section>
+            </div>
+
+            <div id="panel-setup" class="wiki-tabpanel" aria-label="計算設定">
+                <section class="wiki-section" id="section-params">
+                    <h2 id="heading-setup" class="wiki-section__head"><span class="wiki-section__head-text">基本參數</span></h2>
+                    <div class="wiki-infobox">
+                        <table class="wiki-kv-table">
+                            <tbody>
+                                <tr>
+                                    <th scope="row"><label for="goalProfit">目標總收益</label></th>
+                                    <td><input type="number" id="goalProfit" value="2400000"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label for="itemPrice">商品單價</label></th>
+                                    <td><input type="number" id="itemPrice" value="1800"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label for="totalUnits">總勞作單元</label></th>
+                                    <td><input type="number" id="totalUnits" value="278"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="wiki-section" id="section-res">
+                    <h2 class="wiki-section__head"><span class="wiki-section__head-text">資源資料</span></h2>
+                    <div class="resource-grid" id="resContainer"></div>
+                </section>
+
+                <div class="wiki-actions">
+                    <button type="button" class="btn-primary" id="calcBtn">計算最佳同步分配方案</button>
+                </div>
+            </div>
+
+            <div id="panel-result" class="wiki-tabpanel" aria-labelledby="heading-result">
+                <section id="result" class="wiki-section wiki-result-block" aria-live="polite">
+                    <h2 id="heading-result" class="wiki-section__head"><span class="wiki-section__head-text">分配結果</span></h2>
+                    <div class="wiki-result-body">
+                        <p id="resultEmpty" class="wiki-result-empty">請先於上方輸入資料並執行計算。</p>
+                        <div id="resultContent" class="wiki-result-content" hidden>
+                            <p id="timeSummary" class="wiki-result-summary"></p>
+                            <div class="wiki-table-wrap">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">資源</th>
+                                            <th scope="col">當前缺口</th>
+                                            <th scope="col">分配勞作單元</th>
+                                            <th scope="col">每分鐘總產量</th>
+                                            <th scope="col">該項需時</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="resTable"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
