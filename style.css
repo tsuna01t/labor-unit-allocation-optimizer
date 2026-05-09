@@ -422,6 +422,80 @@ input[type="number"]:focus {
     }
 }
 
+@media (max-width: 640px) {
+    .wiki-result-body {
+        padding: 14px;
+    }
+
+    .wiki-table-wrap {
+        border: none;
+        margin: 0;
+        overflow: visible;
+    }
+
+    .wiki-table-wrap table {
+        border-collapse: separate;
+        border-spacing: 0 10px;
+    }
+
+    .wiki-table-wrap thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    .wiki-table-wrap tbody,
+    .wiki-table-wrap tr,
+    .wiki-table-wrap td {
+        display: block;
+        width: 100%;
+    }
+
+    .wiki-table-wrap tr {
+        border: 1px solid var(--wiki-primary);
+        border-radius: var(--wiki-radius);
+        background: #fff;
+        overflow: hidden;
+    }
+
+    .wiki-table-wrap td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        border: none;
+        border-bottom: 1px solid var(--wiki-border);
+        padding: 10px 12px;
+        text-align: right;
+    }
+
+    .wiki-table-wrap td:last-child {
+        border-bottom: none;
+    }
+
+    .wiki-table-wrap td::before {
+        content: attr(data-label);
+        flex: 0 0 42%;
+        text-align: left;
+        color: var(--wiki-text-muted);
+        font-weight: 600;
+    }
+
+    .wiki-table-wrap td:first-child {
+        background: var(--wiki-table-label);
+    }
+
+    .wiki-table-wrap td:first-child::before {
+        color: var(--wiki-text);
+    }
+}
+
 .detail__divider {
     position: relative;
     height: 3px;

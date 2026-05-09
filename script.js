@@ -5,36 +5,36 @@ const defaultRes = [
         name: "燃素碳石",
         icon: "img/PHC.png",
         need: 100,
-        base: 480,
+        base: 640,
         eff: 16,
-        stock: 764361,
+        stock: 3624,
         limit: 600
     },
     {
         name: "碎石礦礫",
         icon: "img/GVL.png",
-        need: 600,
+        need: 200,
         base: 480,
         eff: 16,
-        stock: 942,
+        stock: 1016939,
         limit: 600
     },
     {
         name: "隕金",
         icon: "img/STG.png",
-        need: 300,
+        need: 100,
         base: 480,
         eff: 16,
-        stock: 17,
+        stock: 971762,
         limit: 600
     },
     {
         name: "催化劑",
         icon: "img/CAT.png",
-        need: 1000,
+        need: 400,
         base: 1000,
         eff: 100,
-        stock: 58108,
+        stock: 3791,
         limit: 40
     }
 ];
@@ -416,19 +416,19 @@ function calculateBest() {
         tbody.insertAdjacentHTML(
             "beforeend",
             "<tr>" +
-                "<td>" +
+                '<td data-label="資源">' +
                 resourceLabelHtml(r) +
                 "</td>" +
-                "<td>" +
+                '<td data-label="當前缺口">' +
                 Math.ceil(r.gap).toLocaleString() +
                 "</td>" +
-                '<td class="best-alloc">' +
+                '<td class="best-alloc" data-label="分配勞作單元">' +
                 r.alloc +
                 "</td>" +
-                "<td>" +
+                '<td data-label="每分鐘總產量">' +
                 finalRate.toLocaleString() +
                 "</td>" +
-                "<td>" +
+                '<td data-label="該項需時">' +
                 formatWaitMinutes(finalTime) +
                 "</td>" +
                 "</tr>"

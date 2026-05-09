@@ -1,33 +1,43 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HY0L1X550W"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-HY0L1X550W');
+    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>勞作單元分配最佳化</title>
+    <title>勞作單元分配小幫手 | 數海計劃．論文危機</title>
     <meta name="description" content="依目標總收益與商品單價換算產量，並依資源合成需求、基礎產出、單元效率與投入上限，將總勞作單元做貪婪式分配，預估瓶頸路徑與可收取時間。">
-    <meta name="keywords" content="勞作單元,資源分配,同步最佳化,產量計算,崩壞3rd,崩壞3,崩3,數海計劃．論文危機,數海計劃,論文危機">
+    <meta name="keywords" content="崩壞3rd,崩壞3,崩3,數海計劃．論文危機,數海計劃,論文危機,勞作單元,資源分配,同步最佳化,產量計算">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="color-scheme" content="light">
     <meta name="theme-color" content="#00c3ff">
 
     <meta property="og:type" content="website">
     <meta property="og:locale" content="zh_TW">
-    <meta property="og:site_name" content="勞作單元分配最佳化">
-    <meta property="og:title" content="勞作單元分配最佳化">
+    <meta property="og:site_name" content="勞作單元分配小幫手 | 數海計劃．論文危機">
+    <meta property="og:title" content="勞作單元分配小幫手 | 數海計劃．論文危機">
     <meta property="og:description" content="依目標總收益與商品單價換算產量，並依資源合成需求、基礎產出、單元效率與投入上限，將總勞作單元做貪婪式分配，預估瓶頸路徑與可收取時間。">
     <meta property="og:image" content="img/LBU.png">
     <meta property="og:image:type" content="image/png">
-    <meta property="og:image:alt" content="勞作單元分配最佳化">
+    <meta property="og:image:alt" content="勞作單元分配小幫手 | 數海計劃．論文危機">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="勞作單元分配最佳化">
+    <meta name="twitter:title" content="勞作單元分配小幫手 | 數海計劃．論文危機">
     <meta name="twitter:description" content="依目標總收益與商品單價換算產量，並依資源資料將總勞作單元做同步分配試算。">
     <meta name="twitter:image" content="img/LBU.png">
-    <meta name="twitter:image:alt" content="勞作單元分配最佳化">
+    <meta name="twitter:image:alt" content="勞作單元分配小幫手 | 數海計劃．論文危機">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "勞作單元分配最佳化",
+        "name": "勞作單元分配小幫手 | 數海計劃．論文危機",
         "description": "依目標總收益與商品單價換算產量，並依資源合成需求、基礎產出、單元效率與投入上限，將總勞作單元做貪婪式分配，預估瓶頸路徑與可收取時間。",
         "applicationCategory": "UtilityApplication",
         "operatingSystem": "Any",
@@ -46,7 +56,7 @@
     <div class="page-shell">
 
         <main class="wiki-main">
-            <h1 class="wiki-page-title">勞作單元分配最佳化</h1>
+            <h1 class="wiki-page-title">勞作單元分配小幫手</h1>
             <div class="detail__divider" aria-hidden="true"></div>
 
             <div id="panel-about" class="wiki-tabpanel" aria-labelledby="heading-about">
@@ -66,11 +76,11 @@
                             <tbody>
                                 <tr>
                                     <th scope="row"><label for="goalProfit">目標總收益</label></th>
-                                    <td><input type="number" id="goalProfit" value="2400000"></td>
+                                    <td><input type="number" id="goalProfit" value="7200000"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row"><label for="itemPrice">商品單價</label></th>
-                                    <td><input type="number" id="itemPrice" value="1800"></td>
+                                    <td><input type="number" id="itemPrice" value="720"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row"><label for="totalUnits">總勞作單元</label></th>
